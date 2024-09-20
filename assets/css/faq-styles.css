@@ -67,3 +67,28 @@
         font-size: 14px; 
     }
 }
+
+.faq-search-form {
+    margin-bottom: 20px;
+}
+
+.faq-search-form input[type="text"] {
+    padding: 5px;
+    width: 80%;
+    margin-right: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.faq-search-form input[type="submit"] {
+    padding: 5px 10px;
+    background-color: #0073aa; /* WordPress blue */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.faq-search-form input[type="submit"]:hover {
+    background-color: #005177; /* Darker blue on hover */
+}

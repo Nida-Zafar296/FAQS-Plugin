@@ -16,7 +16,6 @@
 require_once plugin_dir_path( __FILE__ ) . 'includes/class-faqs-management.php'; 
 require_once plugin_dir_path( __FILE__ ) . 'includes/class-faqs-management-shortcodes.php'; 
 
-
 //plugin activation hook
 function faqs_management_activat(){
     //Add functionality to run on plugin activation.
