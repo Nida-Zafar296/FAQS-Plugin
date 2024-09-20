@@ -13,6 +13,10 @@
     exit; // Exit if accessed directly.
 }
 
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-faqs-management.php'; 
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-faqs-management-shortcodes.php'; 
+
+
 //plugin activation hook
 function faqs_management_activat(){
     //Add functionality to run on plugin activation.
@@ -24,3 +28,13 @@ function faqs_management_deactivation(){
     //Add functionality to run on plugin deactivation.
 }
 register_deactivation_hook(__FILE__,'faqs_management_deactivation');
+
+function faqs_management_enqueue_scripts() {
+
+    // Custom CSS for the FAQ accordion
+    wp_enqueue_script( 'jquery' ); // Ensure jQuery is loaded
+    wp_enqueue_style( 'faq-accordion-css', plugins_url( 'assets/css/faq-styles.css', __FILE__ ) );
+    wp_enqueue_script( 'faq-accordion', plugins_url( 'assets\js\faq-accordion.js', __FILE__ ), array( 'jquery' ), null, true );
+
+}
+add_action( 'wp_enqueue_scripts', 'faqs_management_enqueue_scripts' );
