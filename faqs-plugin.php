@@ -13,8 +13,13 @@
     exit; // Exit if accessed directly.
 }
 
+<<<<<<< HEAD
 require_once plugin_dir_path( __FILE__ ) . 'includes/faqs-creation.php'; 
 require_once plugin_dir_path( __FILE__ ) . 'includes/accordion.php'; 
+=======
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-faqs-management.php'; 
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-faqs-management-shortcodes.php'; 
+>>>>>>> bd5fcb9a5645c2d71992fc0e843f3411d97b5581
 
 //plugin activation hook
 function faqs_management_activat(){
@@ -29,6 +34,7 @@ function faqs_management_deactivation(){
 register_deactivation_hook(__FILE__,'faqs_management_deactivation');
 
 function faqs_management_enqueue_scripts() {
+<<<<<<< HEAD
     wp_enqueue_script('jquery');
 
   wp_enqueue_style('faq-accordion-css', plugins_url('assets/css/accordion.css', __FILE__));
@@ -40,3 +46,19 @@ function faqs_management_enqueue_scripts() {
 
 add_action('wp_enqueue_scripts', 'faqs_management_enqueue_scripts');
 ;
+=======
+    // Ensure jQuery is loaded
+    wp_enqueue_script('jquery');
+
+    // Custom CSS for the FAQ accordion
+  wp_enqueue_style('faq-accordion-css', plugins_url('assets/css/faq-styles.css', __FILE__));
+    wp_enqueue_style('faq-accordion-responsive-css', plugins_url('assets/css/search.css', __FILE__)); // Additional CSS file
+
+    // Custom JavaScript for the FAQ accordion
+    wp_enqueue_script('faq-accordion', plugins_url('assets/js/faq-accordion.js', __FILE__), array('jquery'), null, true);
+    wp_enqueue_script('faq-accordion-additional', plugins_url('assets/js/faq-search.js', __FILE__), array('jquery'), null, true); // Additional JS file
+}
+
+add_action('wp_enqueue_scripts', 'faqs_management_enqueue_scripts');
+
+>>>>>>> bd5fcb9a5645c2d71992fc0e843f3411d97b5581
