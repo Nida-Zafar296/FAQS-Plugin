@@ -9,10 +9,8 @@ class FAQs_Display {
     public function __construct() {
         // Register shortcodes for displaying FAQs
         add_shortcode( 'faq_accordion_by_category', array( $this, 'display_faqs_by_category' ) );
-        
     }
     
-
     public function display_faqs_by_category() {
         $categories = get_terms(array(
             'taxonomy' => 'faq_category',
@@ -24,6 +22,15 @@ class FAQs_Display {
         }
 
         ob_start();
+
+    
+        // Add search bar,search button and bg image
+        echo '<div class="faq-image-container">';
+        echo '<div class="faq-search-bar">';
+        echo '<input type="text" id="faq-search-input" placeholder="Search FAQs...">';
+        echo '<button id="faq-search-button">Search</button>';
+        echo '</div>';
+        echo '</div>';
 
         // Loop through each category
         foreach ($categories as $category) {
@@ -75,7 +82,7 @@ class FAQs_Display {
                         $tags_list .= '</div>';
                     }
 
-                    echo '<div class="faq-item">';
+                    echo '<div class="faq-item" data-question="'. esc_html($question) .'" data-answer="'. wp_strip_all_tags($answer) .'">';
                     echo '<div class="faq-question" data-faq-id="' . esc_attr($question_id) . '">';
                     echo '<span class="faq-toggle">+</span> <strong>' . esc_html($question) . '</strong>';
                     echo '</div>';
@@ -104,5 +111,3 @@ class FAQs_Display {
 
 // Instantiate the class to ensure shortcodes are registered
 new FAQs_Display();
-
-

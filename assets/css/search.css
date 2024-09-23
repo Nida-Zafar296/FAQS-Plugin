@@ -1,0 +1,29 @@
+.faq-search-bar {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px; 
+}
+
+.faq-search-bar input {
+    width: 80%; 
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.faq-search-bar button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: rgb(50, 50, 110); 
+    color: white; 
+    border: none;
+    border-radius: 4px; 
+    cursor: pointer; 
+}
+
+.faq-search-bar button:hover {
+    background-color: rgb(45, 45, 83); 
+}
+

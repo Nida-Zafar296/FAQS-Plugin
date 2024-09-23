@@ -3,18 +3,6 @@
     margin-bottom: 20px;
 }
 
-.faq-items {
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 10px;
-    background-color: #f9f9f9;
-}
-
-.faq-item {
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
 .faq-question {
     cursor: pointer; 
     padding: 10px;
@@ -91,4 +79,14 @@
 
 .faq-search-form input[type="submit"]:hover {
     background-color: #005177; /* Darker blue on hover */
+}
+
+.faq-image-container {
+    background-image: url('http://comprehensive-faqs-management.local/wp-content/plugins/faqs-plugin/assets/images/faq.png');
+    background-size: cover; /* Cover the entire container */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-position: center; /* Center the image */
+    height: 300px; /* Set to the same height as the search bar */
+    width: 100%; /* Full width */
+    margin-bottom: 20px; /* Add some spacing below the image */
 }
