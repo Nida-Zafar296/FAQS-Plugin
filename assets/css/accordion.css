@@ -1,0 +1,92 @@
+/* General Styles for the FAQ Accordion */
+.faq-category-block {
+    margin-bottom: 20px;
+}
+
+.faq-question {
+    cursor: pointer; 
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    position: relative;
+    font-weight: bold;
+}
+
+.faq-question:hover {
+    background-color: #f0f0f0; 
+}
+
+.faq-toggle {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.faq-answer {
+    display: none;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 0 0 4px 4px;
+}
+
+.faq-categories,
+.faq-tags {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+.faq-categories strong,
+.faq-tags strong {
+    font-weight: bold;
+}
+
+
+@media (max-width: 768px) {
+    .faq-question {
+        font-size: 14px; 
+    }
+
+    .faq-toggle {
+        font-size: 14px; 
+    }
+}
+
+.faq-search-form {
+    margin-bottom: 20px;
+}
+
+.faq-search-form input[type="text"] {
+    padding: 5px;
+    width: 80%;
+    margin-right: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.faq-search-form input[type="submit"] {
+    padding: 5px 10px;
+    background-color: #0073aa; /* WordPress blue */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.faq-search-form input[type="submit"]:hover {
+    background-color: #005177; /* Darker blue on hover */
+}
+
+.faq-image-container {
+    background-image: url('http://comprehensive-faqs-management.local/wp-content/plugins/faqs-plugin/assets/images/faq.png');
+    background-size: cover; /* Cover the entire container */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-position: center; /* Center the image */
+    height: 300px; /* Set to the same height as the search bar */
+    width: 100%; /* Full width */
+    margin-bottom: 20px; /* Add some spacing below the image */
+}
