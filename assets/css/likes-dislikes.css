@@ -1,0 +1,62 @@
+
+/* Like and Dislike buttons */
+.like-button {
+    padding: 8px 16px;
+    background-color: #0073aa; /* Blue background for Like */
+    border: 1px solid #005a8b; /* Darker blue border */
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff; /* White text */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+/* Container for the like and dislike buttons */
+.faq-likes-dislikes {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    margin-top: 15px; /* Add space above the buttons */
+}
+
+/* Like and Dislike buttons */
+.like-button {
+    padding: 8px 16px;
+    background-color: #0073aa; /* Blue background for Like */
+    border: 1px solid #005a8b; /* Darker blue border */
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff; /* White text */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-right: 5px; /* Space between buttons */
+}
+
+.dislike-button {
+    padding: 8px 16px;
+    background-color: #f44336; /* Red background for Dislike */
+    border: 1px solid #d32f2f; /* Darker red border */
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff; /* White text */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Active state when the button is clicked */
+.like-button.active {
+    background-color: #004c7f; /* Darker blue when active */
+    color: #fff; /* White text when active */
+}
+
+.dislike-button.active {
+    background-color: #c62828; /* Darker red when active */
+    color: #fff; /* White text when active */
+}
+
+/* Disable state */
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}

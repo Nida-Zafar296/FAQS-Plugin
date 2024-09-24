@@ -90,8 +90,17 @@ class FAQs_Display {
                     echo '<p><strong>ANS:</strong> ' . wp_strip_all_tags($answer) . '</p>';
                     echo $categories_list; // Display categories inside the block
                     echo $tags_list; // Display tags inside the block
+
+                    // Display like/dislike buttons and counts
+                    $likes = get_post_meta($question_id, 'likes', true);
+                    $dislikes = get_post_meta($question_id, 'dislikes', true);
+                    echo '<div class="faq-likes-dislikes">';
+                    echo '<button class="like-button" data-faq-id="' . esc_attr($question_id) . '">Like (' . esc_html($likes) . ')</button>';
+                    echo '<button class="dislike-button" data-faq-id="' . esc_attr($question_id) . '">Dislike (' . esc_html($dislikes) . ')</button>';
                     echo '</div>';
-                    echo '</div>';
+
+                    echo '</div>'; // Close .faq-answer
+                    echo '</div>'; // Close .faq-item
                 }
 
                 echo '</div>'; // Close .faq-items
