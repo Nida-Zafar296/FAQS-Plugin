@@ -6,6 +6,7 @@ function faqs_management_enqueue_scripts() {
     wp_enqueue_style('faq-accordion-css', plugins_url('../assets/css/accordion.css', __FILE__));
     wp_enqueue_style('faq-search-css', plugins_url('../assets/css/search.css', __FILE__));
     wp_enqueue_style('faq-likes-dislikes-css', plugins_url('../assets/css/likes-dislikes.css', __FILE__));
+    wp_enqueue_style('faq-widget-css', plugins_url('../assets/css/widget.css', __FILE__));
 
     // Enqueue JS files
     wp_enqueue_script('faq-accordion', plugins_url('../assets/js/faq-accordion.js', __FILE__), array('jquery'), null, true);

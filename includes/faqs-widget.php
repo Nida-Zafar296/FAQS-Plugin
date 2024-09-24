@@ -12,7 +12,6 @@ function faq_widget_init() {
 }
 add_action('widgets_init', 'faq_widget_init');
 
-// Create the FAQ Widget Class
 class FAQ_Widget extends WP_Widget {
 
     public function __construct() {
@@ -25,14 +24,12 @@ class FAQ_Widget extends WP_Widget {
 
     public function widget($args, $instance) {
         echo $args['before_widget'];
-        if (!empty($instance['title'])) {
-            echo $args['before_title'] . apply_filters('widget_title', $instance['title']) . $args['after_title'];
-        }
+        echo $args['before_title'] . __('Recent FAQs', 'faq-widget-plugin') . $args['after_title'];
 
         // Query to fetch recent FAQs
         $faq_args = array(
             'post_type' => 'faq',
-            'posts_per_page' => 5, // Adjust the number as needed
+            'posts_per_page' => 2, // Show top 2 FAQs
             'orderby' => 'date',
             'order' => 'DESC'
         );
@@ -53,27 +50,11 @@ class FAQ_Widget extends WP_Widget {
         wp_reset_postdata();
         echo $args['after_widget'];
     }
-
-    public function form($instance) {
-        $title = !empty($instance['title']) ? $instance['title'] : __('Recent FAQs', 'faq-widget-plugin');
-        ?>
-        <p>
-            <label for="<?php echo esc_attr($this->get_field_id('title')); ?>"><?php esc_attr_e('Title:', 'faq-widget-plugin'); ?></label>
-            <input class="widefat" id="<?php echo esc_attr($this->get_field_id('title')); ?>" name="<?php echo esc_attr($this->get_field_name('title')); ?>" type="text" value="<?php echo esc_attr($title); ?>">
-        </p>
-        <?php
-    }
-
-    public function update($new_instance, $old_instance) {
-        $instance = array();
-        $instance['title'] = (!empty($new_instance['title'])) ? strip_tags($new_instance['title']) : '';
-
-        return $instance;
-    }
 }
 
-// Register the FAQ Widget
 function register_faq_widget() {
     register_widget('FAQ_Widget');
 }
 add_action('widgets_init', 'register_faq_widget');
+
+?>
