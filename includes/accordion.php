@@ -9,8 +9,16 @@ class FAQs_Display {
     public function __construct() {
         // Register shortcodes for displaying FAQs
         add_shortcode( 'faq_accordion_by_category', array( $this, 'display_faqs_by_category' ) );
+
+        // Enqueue Font Awesome
+        add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
     }
-    
+
+    public function enqueue_styles() {
+        // Enqueue Font Awesome
+        wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css' );
+    }
+
     public function display_faqs_by_category() {
         $categories = get_terms(array(
             'taxonomy' => 'faq_category',
@@ -96,8 +104,10 @@ class FAQs_Display {
                     $likes = get_post_meta($question_id, 'likes', true);
                     $dislikes = get_post_meta($question_id, 'dislikes', true);
                     echo '<div class="faq-likes-dislikes">';
-                    echo '<button class="like-button" data-faq-id="' . esc_attr($question_id) . '">Like (' . esc_html($likes) . ')</button>';
-                    echo '<button class="dislike-button" data-faq-id="' . esc_attr($question_id) . '">Dislike (' . esc_html($dislikes) . ')</button>';
+                    echo '<button class="like-button" data-faq-id="' . esc_attr($question_id) . '">';
+                    echo '<i class="fas fa-thumbs-up"></i> Like (' . esc_html($likes) . ')</button>';
+                    echo '<button class="dislike-button" data-faq-id="' . esc_attr($question_id) . '">';
+                    echo '<i class="fas fa-thumbs-down"></i> Dislike (' . esc_html($dislikes) . ')</button>';
                     echo '</div>';
     
                     echo '</div>'; // Close .faq-answer
