@@ -28,6 +28,17 @@ class FAQs_Management {
         );
         // Register the custom post type with WordPress
         register_post_type( 'faq', $args );
+         // Register post meta for likes and dislikes
+    register_post_meta('faq', 'likes', array(
+        'type' => 'integer',
+        'single' => true,
+        'default' => 0,
+    ));
+    register_post_meta('faq', 'dislikes', array(
+        'type' => 'integer',
+        'single' => true,
+        'default' => 0,
+    ));
     }
 
     /**
