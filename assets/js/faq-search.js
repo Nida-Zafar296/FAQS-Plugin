@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Get references to the search input field and button
     const searchInput = document.getElementById('faq-search-input');
     const searchButton = document.getElementById('faq-search-button');
     
@@ -16,8 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Get the text of the question and answer, and convert to lowercase
             const question = item.querySelector('.faq-question').innerText.toLowerCase();
             const answer = item.querySelector('.faq-answer').innerText.toLowerCase();
-
-            // Optional: check for categories or tags, if they exist in your HTML structure
             const categoriesElem = item.querySelector('.faq-categories');
             const tagsElem = item.querySelector('.faq-tags');
             
