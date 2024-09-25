@@ -10,13 +10,14 @@ class FAQs_Display {
         // Register shortcodes for displaying FAQs
         add_shortcode( 'faq_accordion_by_category', array( $this, 'display_faqs_by_category' ) );
 
-        // Enqueue Font Awesome
-        add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+        // Enqueue Font Awesome and custom scripts/styles
+        add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles_and_scripts' ) );
     }
 
-    public function enqueue_styles() {
+    public function enqueue_styles_and_scripts() {
         // Enqueue Font Awesome
         wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css' );
+        
     }
 
     public function display_faqs_by_category() {
@@ -24,9 +25,14 @@ class FAQs_Display {
             'taxonomy' => 'faq_category',
             'hide_empty' => true,
         ));
+
+        $tags = get_terms(array(
+            'taxonomy' => 'faq_tag', 
+            'hide_empty' => true,
+        ));
     
-        if (empty($categories)) {
-            return '<p>No FAQ categories found.</p>';
+        if (empty($categories) && empty($tags)) {
+            return '<p>No FAQ categories or tags found.</p>';
         }
     
         ob_start();
@@ -41,7 +47,29 @@ class FAQs_Display {
         echo '</div>';
         echo '</div>';
     
-        // Loop through each category
+        // Add clickable category tabs
+        echo '<div class="faq-tabs">';
+        echo '<ul class="faq-categories-tabs">';
+        echo '<li class="faq-tab active" data-term="all">All Categories</li>'; // Default "All" tab
+        foreach ($categories as $category) {
+            echo '<li class="faq-tab" data-term="'. esc_attr($category->slug) .'">' . esc_html($category->name) . '</li>';
+        }
+        echo '</ul>';
+        echo '</div>';
+
+        // Add clickable tag tabs
+        echo '<div class="faq-tags-tabs">';
+        echo '<ul class="faq-tags-list">';
+        echo '<li class="faq-tag-tab" data-tag="all">All Tags</li>'; // Default "All Tags" tab
+        foreach ($tags as $tag) {
+            echo '<li class="faq-tag-tab" data-tag="'. esc_attr($tag->slug) .'">' . esc_html($tag->name) . '</li>';
+        }
+        echo '</ul>';
+        echo '</div>';
+    
+        echo '<div id="faq-accordion">'; // Container for FAQ items
+    
+        // Initial display of all FAQs
         foreach ($categories as $category) {
             $faq_query = new WP_Query(array(
                 'post_type' => 'faq',
@@ -56,10 +84,7 @@ class FAQs_Display {
             ));
     
             if ($faq_query->have_posts()) {
-                echo '<div class="faq-category-block">'; // Start category block
-    
-                // Display FAQs, with category information first
-                echo '<div class="faq-items">';
+                echo '<div class="faq-category-block" data-category="' . esc_attr($category->slug) . '">'; // Start category block
     
                 while ($faq_query->have_posts()) {
                     $faq_query->the_post();
@@ -71,34 +96,13 @@ class FAQs_Display {
                     $question = get_the_title();
                     $answer   = get_the_content();
     
-                    // Get categories for the current FAQ item
-                    $faq_categories = get_the_terms($question_id, 'faq_category');
-                    $categories_list = '';
-    
-                    if ($faq_categories && !is_wp_error($faq_categories)) {
-                        $categories_list = '<div class="faq-categories"><strong>Category:</strong> ';
-                        $categories_list .= implode(', ', wp_list_pluck($faq_categories, 'name'));
-                        $categories_list .= '</div>';
-                    }
-    
-                    // Get tags for the current FAQ item
-                    $tags = get_the_terms($question_id, 'faq_tag');
-                    $tags_list = '';
-    
-                    if ($tags && !is_wp_error($tags)) {
-                        $tags_list = '<div class="faq-tags"><strong>Tags:</strong> ';
-                        $tags_list .= implode(', ', wp_list_pluck($tags, 'name'));
-                        $tags_list .= '</div>';
-                    }
-    
-                    echo '<div class="faq-item" data-question="'. esc_html($question) .'" data-answer="'. wp_strip_all_tags($answer) .'">';
+                    // FAQ Item
+                    echo '<div class="faq-item" data-question="'. esc_html($question) .'" data-answer="'. wp_strip_all_tags($answer) .'" data-tags="'. esc_html( implode( ',', wp_get_post_terms( $question_id, 'faq_tag', array( 'fields' => 'slugs' ) ) ) ) .'">';
                     echo '<div class="faq-question" data-faq-id="' . esc_attr($question_id) . '">';
                     echo '<span class="faq-toggle">+</span> <strong>' . esc_html($question) . '</strong>';
                     echo '</div>';
                     echo '<div class="faq-answer" style="display: none;">'; // Initially hidden
                     echo '<p><strong>ANS:</strong> ' . wp_strip_all_tags($answer) . '</p>';
-                    echo $categories_list; // Display categories inside the block
-                    echo $tags_list; // Display tags inside the block
     
                     // Display like/dislike buttons and counts
                     $likes = get_post_meta($question_id, 'likes', true);
@@ -114,18 +118,13 @@ class FAQs_Display {
                     echo '</div>'; // Close .faq-item
                 }
     
-                echo '</div>'; // Close .faq-items
                 echo '</div>'; // Close .faq-category-block
-            } else {
-                echo '<div class="faq-category-block">';
-                echo '<p>No FAQs found in this category.</p>';
-                echo '</div>';
             }
     
             wp_reset_postdata();
         }
 
-        echo '</div>'; // Close faq-content
+        echo '</div>'; // Close faq-accordion
     
         // Display the sidebar in the faq-sidebar div
         echo '<div class="faq-sidebar">';

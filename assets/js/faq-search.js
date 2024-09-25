@@ -9,15 +9,21 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add a click event listener to the search button
     searchButton.addEventListener('click', function() {
         // Retrieve the value from the search input and convert it to lowercase
-        const searchTerm = searchInput.value.toLowerCase();
+        const searchTerm = searchInput.value.toLowerCase().trim();
 
         // Loop through each FAQ item to check for matches
         faqItems.forEach(function(item) {
-            // Get the text of the question, answer, categories, and tags, and convert to lowercase
+            // Get the text of the question and answer, and convert to lowercase
             const question = item.querySelector('.faq-question').innerText.toLowerCase();
             const answer = item.querySelector('.faq-answer').innerText.toLowerCase();
-            const categories = item.querySelector('.faq-categories').innerText.toLowerCase();
-            const tags = item.querySelector('.faq-tags').innerText.toLowerCase();
+
+            // Optional: check for categories or tags, if they exist in your HTML structure
+            const categoriesElem = item.querySelector('.faq-categories');
+            const tagsElem = item.querySelector('.faq-tags');
+            
+            // Check if the elements exist before accessing their innerText
+            const categories = categoriesElem ? categoriesElem.innerText.toLowerCase() : '';
+            const tags = tagsElem ? tagsElem.innerText.toLowerCase() : '';
 
             // Check if the search term is found in the question, answer, categories, or tags
             if (question.includes(searchTerm) || answer.includes(searchTerm) || categories.includes(searchTerm) || tags.includes(searchTerm)) {
