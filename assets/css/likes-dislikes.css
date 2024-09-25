@@ -1,39 +1,66 @@
 .faq-likes-dislikes {
-    display: flex;
-    justify-content: flex-start; 
+    display: flex; 
+    align-items: center; 
     margin-top: 10px; 
-    gap: 15px; 
 }
 
-.like-button,
-.dislike-button {
-    background-color: #f0f0f0; 
-    border: 1px solid #ccc; 
-    border-radius: 5px; 
-    padding: 8px 12px; 
+.faq-likes-dislikes button {
+    background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%); 
+    border: none; 
+    border-radius: 25px; 
     cursor: pointer; 
-    transition: background-color 0.3s ease, transform 0.3s ease; 
-    font-size: 14px; 
+    padding: 10px 15px; 
+    margin-right: 10px; 
+    font-size: 16px; 
+    color: white; 
+    display: flex; 
+    align-items: center; 
+    transition: background 0.3s, transform 0.2s; 
 }
 
-.like-button:hover,
-.dislike-button:hover {
-    background-color: #e0e0e0; 
+.faq-likes-dislikes .dislike-button {
+    background: linear-gradient(135deg, #F44336 0%, #EF5350 100%); 
 }
 
-.like-button:active,
-.dislike-button:active {
+.faq-likes-dislikes img {
+    width: 24px; 
+    height: 24px; 
+    margin-right: 8px; 
+    vertical-align: middle; 
+    transition: transform 0.2s; 
+}
+
+.faq-likes-dislikes button:hover {
+    transform: scale(1.05); 
+}
+
+.faq-likes-dislikes button:hover img {
+    transform: scale(1.2); 
+}
+
+.faq-likes-dislikes button:active {
     transform: scale(0.95); 
 }
 
-.fas {
-    margin-right: 5px; 
+.faq-likes-dislikes button:focus {
+    outline: none; 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); 
 }
 
-.like-button {
-    color: #3929a2; 
+.faq-likes-dislikes span {
+    font-weight: bold; 
 }
 
-.dislike-button {
-    color: #dc3545; 
+/* Add responsiveness */
+@media (max-width: 600px) {
+    .faq-likes-dislikes {
+        flex-direction: column; 
+    }
+    .faq-likes-dislikes button {
+        margin-right: 0; 
+        margin-bottom: 10px; 
+    }
 }
+
+
+
