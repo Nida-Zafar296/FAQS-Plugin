@@ -8,7 +8,7 @@ class FAQs_Display {
 
     public function __construct() {
         // Register shortcodes for displaying FAQs
-        add_shortcode( 'faq_accordion_by_category', array( $this, 'display_faqs_by_category' ) );
+        add_shortcode( 'faq_accordion_by_category', array( $this, 'display_faqs' ) );
 
         // Enqueue Font Awesome and custom scripts/styles
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles_and_scripts' ) );
@@ -19,13 +19,20 @@ class FAQs_Display {
         wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css' );
         
     }
-
-    public function display_faqs_by_category() {
+    public function display_faqs() {
+        // Retrieve the stored options
+        $options = get_option('faq_options');
+    
+        // Set defaults if options are not set
+        $background_color = !empty($options['background_color']) ? $options['background_color'] : '#f9f9f9';
+        $like_icon = !empty($options['like_icon']) ? $options['like_icon'] : 'default-like-icon-url.png'; // Provide a default URL
+        $dislike_icon = !empty($options['dislike_icon']) ? $options['dislike_icon'] : 'default-dislike-icon-url.png'; // Provide a default URL
+    
         $categories = get_terms(array(
             'taxonomy' => 'faq_category',
             'hide_empty' => true,
         ));
-
+    
         $tags = get_terms(array(
             'taxonomy' => 'faq_tag', 
             'hide_empty' => true,
@@ -36,9 +43,9 @@ class FAQs_Display {
         }
     
         ob_start();
-        echo '<div class="faq-main-content">';
+        echo '<div class="faq-main-content" style="background-color:' . esc_attr($background_color) . ';">'; // Apply background color
         echo '<div class="faq-content">';
-
+    
         // Add search bar, search button, and background image
         echo '<div class="faq-image-container">';
         echo '<div class="faq-search-bar">';
@@ -56,7 +63,7 @@ class FAQs_Display {
         }
         echo '</ul>';
         echo '</div>';
-
+    
         // Add clickable tag tabs
         echo '<div class="faq-tags-tabs">';
         echo '<ul class="faq-tags-list">';
@@ -109,9 +116,9 @@ class FAQs_Display {
                     $dislikes = get_post_meta($question_id, 'dislikes', true);
                     echo '<div class="faq-likes-dislikes">';
                     echo '<button class="like-button" data-faq-id="' . esc_attr($question_id) . '">';
-                    echo '<i class="fas fa-thumbs-up"></i> Like (' . esc_html($likes) . ')</button>';
+                    echo '<img src="' . esc_url($like_icon) . '" alt="Like" /> Like (' . esc_html($likes) . ')</button>';
                     echo '<button class="dislike-button" data-faq-id="' . esc_attr($question_id) . '">';
-                    echo '<i class="fas fa-thumbs-down"></i> Dislike (' . esc_html($dislikes) . ')</button>';
+                    echo '<img src="' . esc_url($dislike_icon) . '" alt="Dislike" /> Dislike (' . esc_html($dislikes) . ')</button>';
                     echo '</div>';
     
                     echo '</div>'; // Close .faq-answer
@@ -123,7 +130,7 @@ class FAQs_Display {
     
             wp_reset_postdata();
         }
-
+    
         echo '</div>'; // Close faq-accordion
     
         // Display the sidebar in the faq-sidebar div
@@ -139,6 +146,7 @@ class FAQs_Display {
     
         return ob_get_clean();
     }
+    
 }
 
 // Instantiate the class to ensure shortcodes are registered
