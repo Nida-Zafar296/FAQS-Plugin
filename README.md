@@ -2,6 +2,19 @@
 # Introduction
 The FAQs Plugin for WordPress allows you to create, manage, and display Frequently Asked Questions (FAQs) on your website. With features like categories, tags, search functionality, and a user-friendly accordion layout, this plugin enhances user experience and provides valuable information to your visitors.
 
+# Working Video
+
+<a href="https://drive.google.com/file/d/1RSUufoHglm2wph3wKn17L9I9WiL27WAW/view?usp=sharing" target="_blank">
+  Working video
+</a>
+
+# screenshots
+
+<a href="https://drive.google.com/file/d/1eCEnJfxPLuZAlQfkOdO8bDST0gWNyWzi/view?usp=sharing" target="_blank">
+  Working video
+</a>
+
+
 # Installation
 # Installing via WordPress Admin
 1. Download the plugin
@@ -61,6 +74,16 @@ The FAQs Plugin for WordPress allows you to create, manage, and display Frequent
 5. Categories or Tags Missing:
     - Ensure that you have created categories and tags under FAQs > Categories and FAQs > Tags.
     - Check if the taxonomies are registered correctly in your plugin code.
+
+# FAQs
+  - Can I change the icons for like/dislike buttons?
+       - Yes, you can update the URLs for the like and dislike icons in the plugin settings.
+  - Is the plugin compatible with all WordPress themes?
+       - The plugin is designed to work with most themes, but some custom themes may require additional CSS adjustments.
+  - Can I add images to FAQs?
+        - Yes, you can add images to the FAQ answer content using the WordPress editor.
+  - How do I uninstall the plugin?
+         - To uninstall, go to Plugins in the WordPress admin, deactivate the plugin, and then click Delete. This will remove the plugin files from your WordPress installation.
 
 # Support
   - If you encounter any issues or have questions about the plugin, please reach out for support:
