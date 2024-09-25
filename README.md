@@ -11,7 +11,7 @@ The FAQs Plugin for WordPress allows you to create, manage, and display Frequent
 # screenshots
 
 <a href="https://drive.google.com/file/d/1eCEnJfxPLuZAlQfkOdO8bDST0gWNyWzi/view?usp=sharing" target="_blank">
-  Working video
+  page layout
 </a>
 
 
