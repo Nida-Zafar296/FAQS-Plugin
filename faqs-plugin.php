@@ -20,6 +20,7 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/faqs-widget.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/ajax-handlers.php'; 
 require_once plugin_dir_path( __FILE__ ) . 'includes/faqs-scripts.php'; 
 require_once plugin_dir_path( __FILE__ ) . 'includes/faq-admin-settings.php'; 
+require_once plugin_dir_path( __FILE__ ) . 'includes/wp_enque.php'; 
 
 //plugin activation hook
 function faqs_management_activat(){
