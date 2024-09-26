@@ -4,7 +4,7 @@ The FAQs Plugin for WordPress allows you to create, manage, and display Frequent
 
 # Working Video
 
-<a href="https://drive.google.com/file/d/1RSUufoHglm2wph3wKn17L9I9WiL27WAW/view?usp=sharing" target="_blank">
+<a href="https://drive.google.com/file/d/1bjDtabjzXlyQSzd4kNUuQlrZLSfEoKHI/view?usp=sharing" target="_blank">
   Working video
 </a>
 
