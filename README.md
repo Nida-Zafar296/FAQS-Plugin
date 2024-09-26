@@ -81,9 +81,23 @@ The FAQs Plugin for WordPress allows you to create, manage, and display Frequent
   - Is the plugin compatible with all WordPress themes?
        - The plugin is designed to work with most themes, but some custom themes may require additional CSS adjustments.
   - Can I add images to FAQs?
-        - Yes, you can add images to the FAQ answer content using the WordPress editor.
+       - Yes, you can add images to the FAQ answer content using the WordPress editor.
   - How do I uninstall the plugin?
-         - To uninstall, go to Plugins in the WordPress admin, deactivate the plugin, and then click Delete. This will remove the plugin files from your WordPress installation.
+       - To uninstall, go to Plugins in the WordPress admin, deactivate the plugin, and then click Delete. This will remove the plugin files from your WordPress installation.
+  -  How do I add an FAQ block to my WordPress page?
+       - Register the FAQ Block
+       - Access Gutenberg Editor
+       - Insert the FAQ Block
+       - Add Question and Answer
+       - Publish the Page
+  - How can I add a widget to my WordPress page?
+       - Log in to your WordPress Dashboard.
+       - Navigate to "Appearance" > "Widgets".
+       - Choose a widget from the available list on the left side.
+       - Drag and drop the widget to the desired widget area (e.g., Sidebar, Footer).
+       - Customize the widget settings, if applicable, such as title or content.
+       - Save the changes to apply the widget to your WordPress page.
+
 
 # Support
   - If you encounter any issues or have questions about the plugin, please reach out for support:
